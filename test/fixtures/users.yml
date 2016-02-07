@@ -9,3 +9,8 @@ two:
   email: MyString
   password: MyString
   token: MyString
+
+three:
+  email: abc@gmail.com
+  password: abc
+  token: token_string
