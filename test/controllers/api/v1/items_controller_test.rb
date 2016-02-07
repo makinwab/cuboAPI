@@ -17,4 +17,16 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     assert_equal "MyStringTwo", items[0][:name]
     refute_empty items
   end
+
+  test "the create action should create an item" do
+    assert_difference("Item.count", 1) do
+      item_params = { item: { name: "Create application", bucket_id: 1 }, format: :json  }
+
+      post :create, item_params
+      item = JSON.parse(response.body, symbolize_names: true)
+     
+      assert_equal "Create application", item[:name]
+      assert_equal 1, item[:bucket_id]
+    end
+  end
 end
