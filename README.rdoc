@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/andela-bmakinwa/cuboAPI.svg?style=svg)](https://circleci.com/gh/andela-bmakinwa/cuboAPI)
+<img src="https://circleci.com/gh/andela-bmakinwa/cuboAPI.svg?style=svg">
 
 == README
 
