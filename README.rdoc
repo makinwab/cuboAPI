@@ -1,9 +1,7 @@
-
+[![Circle CI](https://circleci.com/gh/andela-bmakinwa/cuboAPI.svg?style=svg)]
+(https://circleci.com/gh/andela-bmakinwa/cuboAPI)
 
 == README
-
- [![Circle CI](https://circleci.com/gh/andela-bmakinwa/cuboAPI.svg?style=svg)]
-(https://circleci.com/gh/andela-bmakinwa/cuboAPI)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
