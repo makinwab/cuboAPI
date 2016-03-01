@@ -11,6 +11,12 @@ class Api::V1::BucketsController < ApplicationController
     end
   end
 
+  def show
+    bucketlist = Bucket.find_by(id: params[:id])
+
+    render json: bucketlist, status: :ok
+  end
+
   private
     def buckets_params
       params.require(:bucket).permit(:name, :user_id)

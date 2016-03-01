@@ -1,6 +1,8 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    render json: Item.all, status: :ok
+    items = Item.find_by(bucket_id: params[:bucket_id])
+
+    render json: items, status: :ok
   end
 
   def create
@@ -9,6 +11,12 @@ class Api::V1::ItemsController < ApplicationController
     if item.save
       render json: item, status: :created
     end
+  end
+
+  def show
+    item = Item.find_by(id: params[:id], bucket_id: params[:bucket_id])
+
+    render json: item, status: :ok
   end
 
   private
