@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Api::V1::BucketsControllerTest < ActionController::TestCase
   test "should get index" do
@@ -32,18 +32,17 @@ class Api::V1::BucketsControllerTest < ActionController::TestCase
     end
   end
 
-  test "the show action should show a bucket list and corresponding items" do
+  test "the show action should show a bucket list" do
     my_bucket = Bucket.create(name: "High level tasks", user_id: 1)
-    #item_params = { item: { name: "Todo List", bucket_id: my_bucket.id }, format: :json }
 
-    get :show, { id: my_bucket.id }
+    get :show, id: my_bucket.id
 
     assert_equal 200, response.status
 
     bucketlist = JSON.parse(response.body, symbolize_names: true)
 
     assert_equal "High level tasks", bucketlist[:name]
-    refute_empty bucketlist.items
-    assert_equal 1, bucketlist.count
+    refute_empty Bucket.all
+    assert_equal 1, bucketlist[:user_id]
   end
 end

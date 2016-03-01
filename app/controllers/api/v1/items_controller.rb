@@ -20,7 +20,8 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   private
-    def items_params
-      params.require(:item).permit(:name, :bucket_id)
-    end
+
+  def items_params
+    params.require(:item).permit(:name, :bucket_id)
+  end
 end

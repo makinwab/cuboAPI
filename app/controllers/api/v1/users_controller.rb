@@ -9,11 +9,11 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       render json: user, status: :created
     end
-    
   end
 
   private
-    def users_params
-      params.require(:user).permit(:email, :password, :token)
-    end
+
+  def users_params
+    params.require(:user).permit(:email, :password, :token)
+  end
 end

@@ -18,7 +18,8 @@ class Api::V1::BucketsController < ApplicationController
   end
 
   private
-    def buckets_params
-      params.require(:bucket).permit(:name, :user_id)
-    end
+
+  def buckets_params
+    params.require(:bucket).permit(:name, :user_id)
+  end
 end
