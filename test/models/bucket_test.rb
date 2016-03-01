@@ -30,6 +30,6 @@ class BucketTest < ActiveSupport::TestCase
 
   test "a bucket was created by a user" do
     assert_equal "makinwab@yahoo.com", my_bucket.user.email
-    #assert_equal my_bucket.name, doe.buckets.find_by(id: my_bucket.id).name
+    # assert_equal my_bucket.name, doe.buckets.find_by(id: my_bucket.id).name
   end
 end

@@ -19,7 +19,14 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
 
   test "the create action should create a user" do
     assert_difference("User.count", 1) do
-      create_params = { user: { email: "maba@gmail.com", password: "maba", token: "tokenstring" }, format: :json }
+      create_params = { user: {
+        email: "maba@gmail.com",
+        password: "maba",
+        token: "tokenstring"
+      },
+                        format: :json
+      }
+
       post "create", create_params
 
       assert_equal 201, response.status

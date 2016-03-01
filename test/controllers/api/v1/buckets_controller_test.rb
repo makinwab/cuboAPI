@@ -20,7 +20,9 @@ class Api::V1::BucketsControllerTest < ActionController::TestCase
 
   test "the create action should create a bucket" do
     assert_difference("Bucket.count", 1) do
-      bucket_params = { bucket: { name: "Todo List", user_id: 1 }, format: :json }
+      bucket_params = { bucket: { name: "Todo List", user_id: 1 },
+                        format: :json
+      }
 
       post :create, bucket_params
 

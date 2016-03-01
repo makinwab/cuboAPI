@@ -1,7 +1,11 @@
 AllCops:
   Exclude:
     - "vendor/**/*"
-    - "db/schema.rb"
+    - "db/*"
+    - "test/test_helper.rb"
+    - "config/*"
+    - "bin/*"
+    - "Rakefile"
   UseCache: false
 Style/CollectionMethods:
   Description: Preferred collection methods.
@@ -69,7 +73,7 @@ Style/RaiseArgs:
   Description: Checks the arguments passed to raise/fail.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#exception-class-messages
   Enabled: false
-  EnforcedStyle: exploded
+  EnforcedStyle: compact
   SupportedStyles:
   - compact
   - exploded

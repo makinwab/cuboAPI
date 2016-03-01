@@ -40,7 +40,7 @@ class ItemTest < ActiveSupport::TestCase
       bucket_id: my_bucket.id
     )
 
-    #assert_equal 1, my_bucket.items.count
+    # assert_equal 1, my_bucket.items.count
 
     assert_equal my_first_task[:name],
                  my_bucket.items.find(my_first_task.id).name
