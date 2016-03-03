@@ -19,6 +19,14 @@ class Api::V1::BucketsController < ApplicationController
     render json: bucketlist, status: :ok
   end
 
+  def update
+    bucket = Bucket.find_by(id: params[:id])
+
+    if bucket.update(buckets_params)
+      render json: bucket, status: 201
+    end
+  end
+
   private
 
   def buckets_params

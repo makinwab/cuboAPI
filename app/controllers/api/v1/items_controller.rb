@@ -1,6 +1,6 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    items = Item.find_by(bucket_id: params[:bucket_id])
+    items = Item.where(bucket_id: params[:bucket_id])
 
     render json: items, status: :ok
   end
@@ -19,9 +19,17 @@ class Api::V1::ItemsController < ApplicationController
     render json: item, status: :ok
   end
 
+  def update
+    item = Item.find_by(id: params[:id])
+    
+    if item.update(items_params)
+      render json: item, status: 201
+    end
+  end
+
   private
 
   def items_params
-    params.require(:item).permit(:name, :bucket_id)
+    params.permit(:name, :done)
   end
 end
