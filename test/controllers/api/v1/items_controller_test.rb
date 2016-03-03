@@ -3,8 +3,7 @@ require "test_helper"
 class Api::V1::ItemsControllerTest < ActionController::TestCase
   doe = User.create(
     email: "makinwab@yahoo.com",
-    password: "makinwab",
-    token: "token_string"
+    password: "makinwab"
   )
 
   my_bucket = Bucket.create(name: "bootcamp", user_id: doe.id)

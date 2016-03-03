@@ -1,10 +1,12 @@
 class Api::V1::BucketsController < ApplicationController
   def index
-    render json: Bucket.all, status: :ok
+    buckets = Bucket.where(user_id: @current_user.id)
+    render json: buckets, status: :ok
   end
 
   def create
     bucketlist = Bucket.new(buckets_params)
+    bucketlist.user_id = @current_user.id
 
     if bucketlist.save
       render json: bucketlist, status: :created
@@ -20,6 +22,6 @@ class Api::V1::BucketsController < ApplicationController
   private
 
   def buckets_params
-    params.require(:bucket).permit(:name, :user_id)
+    params.permit(:name)
   end
 end

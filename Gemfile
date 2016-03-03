@@ -14,6 +14,12 @@ gem "pry"
 
 gem "faker"
 
+gem "rubocop", require: false
+
+gem "jwt"
+
+gem "bcrypt", "~> 3.1.7"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
