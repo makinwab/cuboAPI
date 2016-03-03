@@ -10,6 +10,8 @@ class Api::V1::BucketsController < ApplicationController
 
     if bucketlist.save
       render json: bucketlist, status: :created
+    else
+      render json: { error: "Could not create bucket" }, status: 500
     end
   end
 
@@ -24,6 +26,18 @@ class Api::V1::BucketsController < ApplicationController
 
     if bucket.update(buckets_params)
       render json: bucket, status: 201
+    else
+      render json: { error: "Could not update bucket" }, status: 500
+    end
+  end
+
+  def destroy
+    bucket = Bucket.find_by(id: params[:id])
+
+    if bucket.destroy
+      render json: { message: "Bucketlist successfully deleted" }, status: 201
+    else
+      render json: { error: "Could not delete bucket" }, status: 500
     end
   end
 
