@@ -2,7 +2,7 @@ class Api::V1::BucketsController < ApplicationController
   def index
     params[:id] = @current_user.id
 
-    buckets = Bucket.paginate(params)
+    buckets = Bucket.search(params).paginate(params)
     render json: buckets, status: :ok
   end
 

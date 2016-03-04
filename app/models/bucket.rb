@@ -5,11 +5,19 @@ class Bucket < ActiveRecord::Base
   validates_associated :user, :items
 
   scope(
+    :search,
+    lambda do |data|
+      buckets = where(user_id: data[:id])
+      buckets.where("lower(name) like ?", "%#{data[:q]}%") if data[:q]
+    end
+  )
+
+  scope(
     :paginate,
     lambda do |data|
       paginated_data = get_paginated_data(data)
-      where(user_id: data[:id]).
-        offset(paginated_data[:offset]).
+      
+      offset(paginated_data[:offset]).
           limit(paginated_data[:limit])
     end
   )
