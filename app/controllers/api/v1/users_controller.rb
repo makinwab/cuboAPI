@@ -4,16 +4,19 @@ class Api::V1::UsersController < ApplicationController
   def create
     user = user_exists(email: params[:email], password: params[:password])
 
-    unless user
-      create_new_user
+    if user
+      get_existing_user
     else
-      get_existing_user user
+      create_new_user
     end
   end
 
   def logout
-    @current_user.update(token: nil)
-    render json: { message: "Logged out successfully" }, status: :ok
+    if @current_user.update_attributes(token: nil)
+      render json: { message: "Logged out successfully" }, status: :ok
+    else
+      render json: { error: "Logout was not successful" }, status: 501
+    end
   end
 
   private
@@ -43,6 +46,6 @@ class Api::V1::UsersController < ApplicationController
 
   def generate_and_update_token(user)
     token = user.generate_token
-    user.update(token: token)
+    user.update_attributes(token: token)
   end
 end

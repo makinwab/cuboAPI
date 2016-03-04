@@ -1,9 +1,8 @@
 require "test_helper"
 
 class Api::V1::BucketsControllerTest < ActionController::TestCase
-
   test "the index action returns back json of all buckets" do
-    @current_user = {id: 1}
+    @current_user = { id: 1 }
     get :index
 
     assert_equal 200, response.status
@@ -16,7 +15,7 @@ class Api::V1::BucketsControllerTest < ActionController::TestCase
   end
 
   test "the create action should create a bucket" do
-    bucket_params = { name: "Todo List"}
+    bucket_params = { name: "Todo List" }
     post :create, bucket_params
 
     assert_equal 201, response.status

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1, path: "" do
       post "/auth/login", to: 'users#create'
       get "/auth/logout", to: 'users#logout'
-      resources :buckets do
+      resources :buckets, path: "bucketlists" do
         resources :items
       end
     end

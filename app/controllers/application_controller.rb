@@ -9,11 +9,11 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_user_from_token
-
-    if claims && user = User.find_by(id: claims[:user_id])
+    if claims && user = User.find_by(id: claims[:user_id], token: get_token)
       @current_user = user
     else
-      render json: { errors: { unauthorized: "You are not authorized to perform this action." } },
+      message = "You are not authorized to perform this action."
+      render json: { errors: { unauthorized: message } },
              status: 401
     end
   end
