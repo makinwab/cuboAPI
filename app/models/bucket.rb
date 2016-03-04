@@ -16,7 +16,6 @@ class Bucket < ActiveRecord::Base
     :paginate,
     lambda do |data|
       paginated_data = get_paginated_data(data)
-      
       offset(paginated_data[:offset]).
           limit(paginated_data[:limit])
     end

@@ -20,7 +20,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find_by(id: params[:id])
+    item = items(params)
 
     if item.update(items_params)
       render json: item, status: 201
@@ -30,7 +30,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find_by(id: params[:id])
+    item = items(params)
 
     if item.destroy
       render json: { message: "Item successfully deleted" }, status: 201
@@ -43,5 +43,9 @@ class Api::V1::ItemsController < ApplicationController
 
   def items_params
     params.permit(:name, :done)
+  end
+
+  def items(params)
+    Item.find_by(id: params[:id])
   end
 end

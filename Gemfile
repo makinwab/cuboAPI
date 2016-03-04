@@ -8,21 +8,24 @@ gem "spring", group: :development
 
 gem "sqlite3"
 
-gem "coveralls", require: false
-
 gem "pry"
 
 gem "faker"
 
 gem "rubocop", require: false
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 gem "jwt"
 
 gem "bcrypt", "~> 3.1.7"
 
-gem "rspec"
+gem "factory_girl_rails", "~> 4.0"
 
-gem "factory_girl_rails"
+group :test, :development do
+  gem "rspec-rails"
+  gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
