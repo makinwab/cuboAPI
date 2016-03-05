@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     user = user_exists(email: params[:email], password: params[:password])
 
     if user
-      get_existing_user
+      get_existing_user user
     else
       create_new_user
     end
@@ -41,7 +41,7 @@ class Api::V1::UsersController < ApplicationController
 
   def get_existing_user(user)
     generate_and_update_token user
-    render json: { token: user.token }, status: :ok
+    render json: { token: user.token }, status: 201
   end
 
   def generate_and_update_token(user)
