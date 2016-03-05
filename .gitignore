@@ -17,3 +17,9 @@
 /tmp
 
 /Gemfile.lock
+
+/.DS_Store
+app/.DS_Store
+/coverage/
+lib/.DS_Store
+

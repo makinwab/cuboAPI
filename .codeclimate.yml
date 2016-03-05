@@ -1,0 +1,32 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+      - python
+      - php
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    exclude_fingerprints:
+    - c4e4f4b8c173dd79e0707a301f835fcd
+    checks:
+      Rubocop/Rails/Output:
+        enabled: false
+      Rubocop/Rails/TimeZone:
+        enabled: false
+ratings:
+  paths:
+  - "**.inc"
+  - "**.js"
+  - "**.jsx"
+  - "**.module"
+  - "**.php"
+  - "**.py"
+  - "**.rb"
+exclude_paths:
+- spec/**/*

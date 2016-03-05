@@ -1,30 +1,11 @@
 require "test_helper"
 
 class Api::V1::UsersControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
-
-  test "the index action returns back json of all users" do
-    get :index
-
-    assert_equal 200, response.status
-
-    users = JSON.parse(response.body, symbolize_names: true)
-
-    assert_equal 3, users.count
-    assert_equal "abc@gmail.com", users[0][:email]
-  end
-
-  test "the create action should create a user" do
+  test "the create action should create a user and generate a token" do
     assert_difference("User.count", 1) do
-      create_params = { user: {
+      create_params = {
         email: "maba@gmail.com",
-        password: "maba",
-        token: "tokenstring"
-      },
-                        format: :json
+        password: "maba"
       }
 
       post "create", create_params
@@ -32,7 +13,7 @@ class Api::V1::UsersControllerTest < ActionController::TestCase
       assert_equal 201, response.status
       user = JSON.parse(response.body, symbolize_names: true)
 
-      assert_equal "maba@gmail.com", user[:email]
+      assert_not_nil user[:token]
     end
   end
 end
