@@ -8,7 +8,7 @@ class Bucket < ActiveRecord::Base
     :search,
     lambda do |data|
       buckets = where(user_id: data[:id])
-      buckets.where("lower(name) like ?", "%#{data[:q]}%") if data[:q]
+      buckets.where("lower(name) like ?", "%#{data[:q]}%") unless data[:q].nil?
     end
   )
 
@@ -16,7 +16,8 @@ class Bucket < ActiveRecord::Base
     :paginate,
     lambda do |data|
       paginated_data = get_paginated_data(data)
-      offset(paginated_data[:offset]).
+      where(user_id: data[:id]).
+        offset(paginated_data[:offset]).
           limit(paginated_data[:limit])
     end
   )

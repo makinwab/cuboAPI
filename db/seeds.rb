@@ -12,12 +12,11 @@ Item.destroy_all
 
 User.create(
   email: "makinwab@yahoo.com",
-  password: "makinwab",
-  token: "token_string"
+  password: "makinwab"
 )
 
 3.times do |_n|
-  User.create(email: Faker::Internet.email, password: Faker::Internet.password, token: Faker::Code.ean)
+  User.create(email: Faker::Internet.email, password: Faker::Internet.password)
 end
 
 10.times do |_o|
