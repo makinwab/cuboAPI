@@ -20,7 +20,7 @@ RSpec.describe "BucketsController", type: :request do
         context "when a limit and page number is passed" do
           it "paginates the bucketlists data" do
             post "/bucketlists", { name: "newbucket" },
-                  HTTP_AUTHORIZATION: "token #{new_token}"
+                 HTTP_AUTHORIZATION: "token #{new_token}"
 
             get "/bucketlists?page=1&limit=2", {},
                 HTTP_AUTHORIZATION: "token #{new_token}"
@@ -80,7 +80,6 @@ RSpec.describe "BucketsController", type: :request do
     let(:bucketlist) { create(:bucket) }
 
     it "updates a bucket with authorization header and bucket id" do
-     
       put "/bucketlists/#{bucketlist[:id]}", { name: "updated bucket" },
           HTTP_AUTHORIZATION: "token #{new_token}"
 

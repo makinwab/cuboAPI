@@ -26,7 +26,7 @@ group :test, :development do
 end
 
 group :test do
-  #gem "simplecov", require: false
+  # gem "simplecov", require: false
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
 end
