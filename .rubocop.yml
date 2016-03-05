@@ -5,6 +5,7 @@ AllCops:
     - "test/test_helper.rb"
     - "config/**/*"
     - "bin/**/*"
+    - "test/**/*"
     - "Rakefile"
   UseCache: false
 Style/CollectionMethods:
