@@ -14,6 +14,7 @@ engines:
     enabled: true
     exclude_fingerprints:
     - c4e4f4b8c173dd79e0707a301f835fcd
+    - 54d6d062cd88f02a69b23522f7630391
     checks:
       Rubocop/Rails/Output:
         enabled: false

@@ -4,6 +4,10 @@ module Api
       let(:valid_email) { "user@seed.com" }
       let(:valid_password) { "userseed" }
 
+      before(:all) do
+        DatabaseCleaner.strategy = :truncation
+      end
+
       def login(email = valid_email, password = valid_password)
         post "/auth/login",
              email: email,
@@ -18,6 +22,10 @@ module Api
       def current_user
         new_token = token
         User.find_by(token: new_token)
+      end
+
+      after(:all) do
+        DatabaseCleaner.clean
       end
     end
   end
