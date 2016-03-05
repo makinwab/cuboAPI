@@ -1,6 +1,6 @@
-{<img src="https://codeclimate.com/github/andela-bmakinwa/cuboAPI/badges/gpa.svg" />}[https://codeclimate.com/github/andela-bmakinwa/cuboAPI] {<img src="https://codeclimate.com/github/andela-bmakinwa/cuboAPI/badges/coverage.svg" />}[https://codeclimate.com/github/andela-bmakinwa/cuboAPI/coverage] {<img src="https://codeclimate.com/github/andela-bmakinwa/cuboAPI/badges/issue_count.svg" />}[https://codeclimate.com/github/andela-bmakinwa/cuboAPI]
+{<img src="https://codeclimate.com/github/andela-bmakinwa/cuboAPI/badges/gpa.svg" />}[https://codeclimate.com/github/andela-bmakinwa/cuboAPI] {<img src="https://travis-ci.org/andela-bmakinwa/cuboAPI.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/andela-bmakinwa/cuboAPI] {<img src="https://codeclimate.com/github/andela-bmakinwa/cuboAPI/badges/coverage.svg" />}[https://codeclimate.com/github/andela-bmakinwa/cuboAPI/coverage]
 
-== README
+== cuboAPI README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
