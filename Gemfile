@@ -9,7 +9,7 @@ gem "spring", group: :development
 gem "sqlite3", group: :development
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem "pg", "~> 0.15"
 
 gem "pry"
 
