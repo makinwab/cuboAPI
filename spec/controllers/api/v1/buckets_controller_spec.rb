@@ -28,7 +28,6 @@ RSpec.describe "BucketsController", type: :request do
         end
 
         context "when a search query is passed" do
-
           it "returns paginated bucketlists data that match the search query" do
             q = "string"
             get "/bucketlists?q=#{q}", {},
