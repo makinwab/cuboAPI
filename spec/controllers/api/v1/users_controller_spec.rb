@@ -17,7 +17,6 @@ RSpec.describe "UsersController", type: :request do
 
         expect(json).not_to be_nil
         expect(User.last.email).to eql subject.email
-
       end
     end
   end
@@ -37,10 +36,10 @@ RSpec.describe "UsersController", type: :request do
 
       context "without an authorization token" do
         it "is an authorized request" do
-           get "/auth/logout"
-           
-           expect(response.status).to eql 401
-           expect(json[:errors][:unauthorized]).not_to be_nil
+          get "/auth/logout"
+
+          expect(response.status).to eql 401
+          expect(json[:errors][:unauthorized]).not_to be_nil
         end
       end
     end
