@@ -1,7 +1,8 @@
 require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 require "factory_girl_rails"
+require "simplecov"
+SimpleCov.start
+CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

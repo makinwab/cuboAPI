@@ -14,8 +14,6 @@ gem "faker"
 
 gem "rubocop", require: false
 
-gem "codeclimate-test-reporter", group: :test, require: nil
-
 gem "jwt"
 
 gem "bcrypt", "~> 3.1.7"
@@ -25,6 +23,11 @@ gem "factory_girl_rails", "~> 4.0"
 group :test, :development do
   gem "rspec-rails"
   gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers"
+end
+
+group :test do
+  gem "simplecov", require: false
+  gem "codeclimate-test-reporter", require: nil
 end
 
 # To use ActiveModel has_secure_password

@@ -178,6 +178,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   shoulda-matchers!
+  simplecov
   spring
   sqlite3
 

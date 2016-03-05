@@ -6,6 +6,7 @@ RSpec.describe "BucketsController", type: :request do
 
   describe "#index" do
     let(:new_token) { token }
+    let(:bucketlist) { build(:bucket) }
 
     context "when retrieving a bucketlist" do
       it "is an invalid request without an authorization token" do
@@ -27,6 +28,7 @@ RSpec.describe "BucketsController", type: :request do
         end
 
         context "when a search query is passed" do
+
           it "returns paginated bucketlists data that match the search query" do
             q = "string"
             get "/bucketlists?q=#{q}", {},
@@ -53,6 +55,7 @@ RSpec.describe "BucketsController", type: :request do
 
   describe "#create" do
     let(:new_token) { token }
+    let(:bucketlist) { build(:bucket) }
 
     it "does not create bucket without authorization token" do
       post "/bucketlists", name: "newbucket3"
@@ -73,6 +76,7 @@ RSpec.describe "BucketsController", type: :request do
 
   describe "#update" do
     let(:new_token) { token }
+    let(:bucketlist) { build(:bucket) }
 
     it "updates a bucket with authorization header and bucket id" do
       put "/bucketlists/980190962", { name: "updated bucket" },
