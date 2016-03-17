@@ -31,15 +31,33 @@ RSpec.describe "BucketsController", type: :request do
         end
 
         context "when a search query is passed" do
-          it "returns paginated bucketlists data that match the search query" do
-            q = "string"
-            get "/bucketlists?q=#{q}", {},
-                HTTP_AUTHORIZATION: "token #{new_token}"
+          context "when result is found" do
+            it "returns paginated bucketlists data that match the search query" do
+              q = "bucket"
+              post "/bucketlists", { name: "newbucket" },
+                   HTTP_AUTHORIZATION: "token #{new_token}"
 
-            expect(response.status).to eql 200
-            # binding.pry
-            # expect(json.length).to eql 1
-            # expect(json[:name].downcase).to include "MyStr"
+              get "/bucketlists?q=#{q}", {},
+                  HTTP_AUTHORIZATION: "token #{new_token}"
+
+              expect(response.status).to eql 200
+              expect(json.length).to eql 1
+            end
+          end
+
+          context "when result is not found" do
+            it "returns paginated bucketlists data that match the search query" do
+              q = "str"
+              post "/bucketlists", { name: "another newbucket" },
+                   HTTP_AUTHORIZATION: "token #{new_token}"
+
+              get "/bucketlists?q=#{q}", {},
+                  HTTP_AUTHORIZATION: "token #{new_token}"
+                  
+              expect(response.status).to eql 200
+              expect(json.length).to eql 0
+              expect(json.empty?).to eql true
+            end
           end
         end
 
@@ -85,6 +103,31 @@ RSpec.describe "BucketsController", type: :request do
 
       expect(response.status).to eql 201
       expect(Bucket.find_by(id: bucketlist[:id]).name).to eql "updated bucket"
+    end
+  end
+
+  describe "#destroy" do
+    let(:new_token) { token }
+    let(:bucketlist) { create(:bucket) }
+
+    context "when authorization token is not set" do
+      it "does not delete the item" do
+        delete "/bucketlists/#{bucketlist[:id]}"
+
+        expect(response.status).to eql 401
+        expect(json[:errors][:unauthorized]).not_to be_nil
+      end
+    end
+
+    context "when authorization token is set" do
+      it "deletes the item" do
+        delete "/bucketlists/#{bucketlist[:id]}", {},
+             HTTP_AUTHORIZATION: "token #{new_token}"
+             
+        expect(response.status).to eql 201
+        expect(json[:message]).to eql "Bucketlist successfully deleted"
+        expect(Bucket.find_by(id: bucketlist[:id])).to be_nil
+      end
     end
   end
 end
