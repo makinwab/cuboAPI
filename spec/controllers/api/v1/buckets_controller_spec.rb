@@ -21,7 +21,6 @@ RSpec.describe "BucketsController", type: :request do
           it "paginates the bucketlists data" do
             post "/bucketlists", { name: "newbucket" },
                  HTTP_AUTHORIZATION: "token #{new_token}"
-
             get "/bucketlists?page=1&limit=2", {},
                 HTTP_AUTHORIZATION: "token #{new_token}"
 
@@ -32,11 +31,12 @@ RSpec.describe "BucketsController", type: :request do
 
         context "when a search query is passed" do
           context "when result is found" do
-            it "returns paginated bucketlists data that match the search query" do
+            it "returns paginated bucketlists"\
+            " data that match the search query" do
               q = "bucket"
+
               post "/bucketlists", { name: "newbucket" },
                    HTTP_AUTHORIZATION: "token #{new_token}"
-
               get "/bucketlists?q=#{q}", {},
                   HTTP_AUTHORIZATION: "token #{new_token}"
 
@@ -46,14 +46,15 @@ RSpec.describe "BucketsController", type: :request do
           end
 
           context "when result is not found" do
-            it "returns paginated bucketlists data that match the search query" do
+            it "returns paginated bucketlists"\
+            " data that match the search query" do
               q = "str"
+
               post "/bucketlists", { name: "another newbucket" },
                    HTTP_AUTHORIZATION: "token #{new_token}"
-
               get "/bucketlists?q=#{q}", {},
                   HTTP_AUTHORIZATION: "token #{new_token}"
-                  
+
               expect(response.status).to eql 200
               expect(json.length).to eql 0
               expect(json.empty?).to eql true
@@ -122,8 +123,8 @@ RSpec.describe "BucketsController", type: :request do
     context "when authorization token is set" do
       it "deletes the item" do
         delete "/bucketlists/#{bucketlist[:id]}", {},
-             HTTP_AUTHORIZATION: "token #{new_token}"
-             
+               HTTP_AUTHORIZATION: "token #{new_token}"
+
         expect(response.status).to eql 201
         expect(json[:message]).to eql "Bucketlist successfully deleted"
         expect(Bucket.find_by(id: bucketlist[:id])).to be_nil

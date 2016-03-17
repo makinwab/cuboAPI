@@ -101,8 +101,8 @@ RSpec.describe "ItemsController", type: :request do
     context "when authorization token is set" do
       it "deletes the item" do
         delete "/bucketlists/#{bucketlist[:id]}/items/#{item[:id]}", {},
-             HTTP_AUTHORIZATION: "token #{new_token}"
-             
+               HTTP_AUTHORIZATION: "token #{new_token}"
+
         expect(response.status).to eql 201
         expect(json[:message]).to eql "Item successfully deleted"
         expect(Item.find_by(id: item[:id])).to be_nil
