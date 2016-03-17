@@ -15,7 +15,7 @@ module Api
         if bucketlist.save
           render json: bucketlist, status: :created
         else
-          render json: { error: "Could not create bucket" }, status: 501
+          respond_to_failure "Could not create bucket"
         end
       end
 
@@ -31,7 +31,7 @@ module Api
         if bucket.update(buckets_params)
           render json: bucket, status: 201
         else
-          render json: { error: "Could not update bucket" }, status: 501
+          respond_to_failure "Could not update bucket"
         end
       end
 
@@ -42,7 +42,7 @@ module Api
           render json: { message: "Bucketlist successfully deleted" },
                  status: 201
         else
-          render json: { error: "Could not delete bucket" }, status: 501
+          respond_to_failure "Could not delete bucket"
         end
       end
 
@@ -54,6 +54,10 @@ module Api
 
       def bucketlist(params)
         Bucket.find_by(id: params[:id])
+      end
+
+      def respond_to_failure(message, status = 501)
+        render json: { error: message }, status: status
       end
     end
   end
