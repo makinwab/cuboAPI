@@ -3,31 +3,29 @@ module Api
     class ItemsController < ApplicationController
       def index
         items = Item.where(bucket_id: params[:bucket_id])
-
-        render json: items, status: :ok
+        respond_to_success items, :ok
       end
 
       def create
         item = Item.new(items_params)
         item.bucket_id = params[:bucket_id]
         if item.save
-          render json: item, status: :created
+          respond_to_success item, :created
         end
       end
 
       def show
         item = Item.find_by(id: params[:id], bucket_id: params[:bucket_id])
-
-        render json: item, status: :ok
+        respond_to_success item
       end
 
       def update
         item = items(params)
 
         if item.update(items_params)
-          render json: item, status: 201
+          respond_to_success item, 201
         else
-          render json: { error: "Could not update item" }, status: 500
+          respond_to_failure "Could not update item"
         end
       end
 
@@ -35,9 +33,10 @@ module Api
         item = items(params)
 
         if item.destroy
-          render json: { message: "Item successfully deleted" }, status: 201
+          response = { message: "Item successfully deleted" }
+          respond_to_success response, 201
         else
-          render json: { error: "Could not delete item" }, status: 500
+          respond_to_failure "Could not delete item"
         end
       end
 
@@ -49,6 +48,14 @@ module Api
 
       def items(params)
         Item.find_by(id: params[:id])
+      end
+
+      def respond_to_failure(message, status = 501)
+        render json: { error: message }, status: status
+      end
+
+      def respond_to_success(response, status = :ok)
+        render json: response, status: status
       end
     end
   end
